@@ -24,7 +24,7 @@ class AptosBlockChain implements Blockchain {
     }
 
     async fetchAccountResources(account: string): Promise<any> {
-        const link = `${this.url.urlGet}/accounts/${account}/transactions`;
+        const link = `${this.url.urlGet}/accounts/${account}/resources`;
         const options = {
             method: 'GET',
             headers: {
