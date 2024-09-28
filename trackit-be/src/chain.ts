@@ -7,7 +7,7 @@ export interface Blockchain {
     fetchAssetBalance(address: string): Promise<any>;
     fetchNFTsBalance(address: string): Promise<any>;
     fetchTopHolder(asset_type: string, numberAccount: number, chain: string): Promise<any>;
-    fetchTransactionByAccount(address: string, numberTransaction: number): Promise<any>;
+    fetchTransactionByAccount(address: string): Promise<any>;
     fetchTransaction(address: string): Promise<any>;
     fetchCoinsCreatedByAccount(address: string): Promise<any>;
     fetchAccountResources(address: string): Promise<any>;
@@ -329,8 +329,8 @@ query MyQuery($address: String) {
         }
     }
 
-    async fetchTransactionByAccount(account: string, numberTransaction: number): Promise<any> {
-        const link = `${this.url.urlGet}/accounts/${account}/transactions?limit=${numberTransaction}`
+    async fetchTransactionByAccount(account: string): Promise<any> {
+        const link = `${this.url.urlGet}/accounts/${account}/transactions`
         const options = {
             method: 'GET',
             headers: {
@@ -423,8 +423,8 @@ class OtherBlockchain implements Blockchain {
         throw new Error("Method not implemented.");
     }
 
-    async fetchTransactionByAccount(account: string, numberTransaction: number): Promise<TableTransactionDataType[]> {
-        const result = await this.fetchData('/user', { wallet: account, limit: numberTransaction });
+    async fetchTransactionByAccount(account: string): Promise<TableTransactionDataType[]> {
+        const result = await this.fetchData('/user', { wallet: account });
         return result.transactions;
     }
 
