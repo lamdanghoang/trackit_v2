@@ -1,7 +1,7 @@
 import { API_KEY } from "../constants/constants";
 import { BalanceDataType, HolderDataType, NftDataType, TableTransactionDataType } from "./getData";
 import axios, { AxiosInstance } from 'axios';
-
+import { createCompletion, loadModel } from 'gpt4all';
 
 export interface Blockchain {
     fetchAssetBalance(address: string): Promise<any>;
@@ -11,7 +11,10 @@ export interface Blockchain {
     fetchTransaction(address: string): Promise<any>;
     fetchCoinsCreatedByAccount(address: string): Promise<any>;
     fetchAccountResources(address: string): Promise<any>;
+    fetchGovernanceVotes(): Promise<any>;
+    getAIInsights(analysisResults: any): Promise<any>;
 }
+
 
 class AptosBlockChain implements Blockchain {
     private url: any;
@@ -20,6 +23,74 @@ class AptosBlockChain implements Blockchain {
         this.url = {
             indexer: `https://aptos-${network}.nodit.io/${API_KEY}/v1/graphql`,
             urlGet: `https://aptos-${network}.nodit.io/v1`
+        }
+
+    }
+
+    async getAIInsights(analysisResults: any): Promise<any> {
+        // const chatGPT = new ChatGPTAPI({ apiKey: '' });
+    
+        const model = await loadModel('mistral-7b-openorca.gguf2.Q4_0.gguf', {
+            verbose: true,
+            device: 'gpu',
+            // modelConfigFile: "./models3.json"
+        });
+
+        const prompt = `
+          Analyze the following blockchain package performance data and provide insights:
+          Total Transactions: ${analysisResults.totalTransactions}
+          Successful Transactions: ${analysisResults.successfulTransactions}
+          Unique Users: ${analysisResults.uniqueUsers}
+          Total Gas Used: ${analysisResults.totalGasUsed}
+          Daily Transaction Counts: ${JSON.stringify(analysisResults.dailyTransactionCount)}
+    
+          Please provide insights on usage trends, potential issues, and recommendations for improvement.
+        `;
+    
+        const response = await createCompletion(model, prompt, { verbose: true })
+
+        return response;
+    }
+
+    async fetchGovernanceVotes(): Promise<any>{
+        const operationsDoc = `
+            query MyQuery {
+                proposal_votes(limit: 100) {
+                    num_votes
+                    proposal_id
+                    staking_pool_address
+                    transaction_timestamp
+                    should_pass
+                    transaction_version
+                    voter_address
+                }
+            }
+        `;
+
+        const options = {
+            method: 'POST',
+            headers: {
+                accept: 'application/json',
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify({
+                query: operationsDoc,
+                operationName: "MyQuery",
+            }),
+        };
+
+        try {
+            const response = await fetch(this.url.indexer, options);
+            console.log("URL: ", this.url.indexer)
+            if (response.ok) {
+                const result = await response.json();
+                const coinInfos: BalanceDataType[] = result.data.proposal_votes;
+                return coinInfos;
+            } else {
+                return [];
+            }
+        } catch (error) {
+            throw new Error('Cannot fetch coin info data. Try again later.');
         }
     }
 
@@ -387,6 +458,15 @@ class OtherBlockchain implements Blockchain {
             }
         );
     }
+
+    fetchGovernanceVotes(): Promise<any> {
+        throw new Error("Method not implemented.");
+    }
+
+    getAIInsights(analysisResults: any): Promise<any> {
+        throw new Error("Method not implemented.");
+    }
+
     fetchAccountResources(address: string): Promise<any> {
         throw new Error("Method not implemented.");
     }
