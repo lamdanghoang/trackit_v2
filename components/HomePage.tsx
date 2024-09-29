@@ -56,27 +56,27 @@ const HomePage = () => {
         <main className="px-3 pt-4 pb-8">
             <div className="max-w-[2400px] mx-auto grid gap-4 grid-cols-8 lg:grid-cols-12">
                 <div className="col-span-2 lg:col-span-3 hidden lg:block">
-                    <Panel title="Claimable Airdrops">
+                    <Panel title="Claimable Airdrops" className="max-h-[600px]">
                         <List list={dummy_airdrop} />
                     </Panel>
                 </div>
                 <div className="col-span-8 lg:col-span-6 grid grid-cols-2 gap-4">
                     <div className="space-y-4">
-                        <Panel title="News">
+                        <Panel title="News" className="max-h-[300px]">
                             <List list={dummy_news} />
                         </Panel>
-                        <Panel title="Prices">
+                        <Panel title="Prices" className="max-h-[300px]">
                             <List list={dummy_price} />
                         </Panel>
                     </div>
                     <div className="space-y-4">
-                        <Panel title="Governance Proposals">
+                        <Panel title="Governance Proposals" className="max-h-[300px]">
                             <List list={dummy_gov} />
                         </Panel>
-                        <Panel title="LlamaSearch">
+                        <Panel title="LlamaSearch" className="max-h-[300px]">
                             <div className="flex flex-col items-center space-y-4">
-                                <img src="/placeholder.svg" alt="Llama" className="w-24 h-24" />
-                                <h2 className="text-xl font-bold">LlamaSearch</h2>
+                                <img src="#" alt="Llama" className="w-24 h-24" />
+                                <h3 className="text-xl font-bold">LlamaSearch</h3>
                                 <div className="relative w-full">
                                     <Search className="absolute left-2 top-1/2 h-4 w-4 -translate-y-1/2 transform text-gray-500" />
                                     <input type="search" placeholder="Search..." className="pl-8 bg-gray-700 border-gray-600 w-full" />
@@ -86,11 +86,9 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div className="col-span-2 lg:col-span-3 hidden lg:block">
-                    <div className="col-span-2 lg:col-span-3 hidden lg:block">
-                        <Panel title="Claimable Airdrops">
-                            <List list={dummy_airdrop} />
-                        </Panel>
-                    </div>
+                    <Panel title="Claimable Airdrops" className="max-h-[600px]">
+                        <List list={dummy_airdrop} />
+                    </Panel>
                 </div>
             </div>
         </main>
