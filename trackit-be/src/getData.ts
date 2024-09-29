@@ -1,6 +1,16 @@
 const url: string = process.env.NEXT_PUBLIC_NODIT_INDEXER || '';
 const apiKey: string = process.env.NEXT_PUBLIC_NODIT_API_KEY || '';
 
+export interface ProposalVoteType {
+  num_votes: number;
+  should_pass: boolean;
+  proposal_id: number;
+  staking_pool_address: string;
+  transaction_timestamp: string
+  transaction_version: number;
+  voter_address: string;
+}
+
 export interface BalanceDataType {
   owner_address: string;
   amount: number;

@@ -1,5 +1,5 @@
 import { API_KEY } from "../constants/constants";
-import { BalanceDataType, HolderDataType, NftDataType, TableTransactionDataType } from "./getData";
+import { BalanceDataType, HolderDataType, NftDataType, ProposalVoteType, TableTransactionDataType } from "./getData";
 import axios, { AxiosInstance } from 'axios';
 import { createCompletion, loadModel } from 'gpt4all';
 
@@ -29,7 +29,7 @@ class AptosBlockChain implements Blockchain {
 
     async getAIInsights(analysisResults: any): Promise<any> {
         // const chatGPT = new ChatGPTAPI({ apiKey: '' });
-    
+
         const model = await loadModel('mistral-7b-openorca.gguf2.Q4_0.gguf', {
             verbose: true,
             device: 'gpu',
@@ -46,13 +46,13 @@ class AptosBlockChain implements Blockchain {
     
           Please provide insights on usage trends, potential issues, and recommendations for improvement.
         `;
-    
+
         const response = await createCompletion(model, prompt, { verbose: true })
 
         return response;
     }
 
-    async fetchGovernanceVotes(): Promise<any>{
+    async fetchGovernanceVotes(): Promise<any> {
         const operationsDoc = `
             query MyQuery {
                 proposal_votes(limit: 100) {
@@ -84,13 +84,13 @@ class AptosBlockChain implements Blockchain {
             console.log("URL: ", this.url.indexer)
             if (response.ok) {
                 const result = await response.json();
-                const coinInfos: BalanceDataType[] = result.data.proposal_votes;
-                return coinInfos;
+                const proposalVotes: ProposalVoteType[] = result.data.proposal_votes;
+                return proposalVotes;
             } else {
                 return [];
             }
         } catch (error) {
-            throw new Error('Cannot fetch coin info data. Try again later.');
+            throw new Error('Cannot fetch proposal vote transaction data. Try again later.');
         }
     }
 
