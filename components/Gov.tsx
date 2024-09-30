@@ -2,7 +2,7 @@ import { Progress } from "./ui/Progress";
 
 const Governance = () => {
     return (
-        <div className="p-4 block rounded-lg overflow-hidden transition-colors duration-300 mt-2 ml-1 mr-1 bg-gray-800 hover:bg-gray-700 text-gray-100">
+        <div className="p-4 block rounded-lg transition-colors duration-300 mt-2 ml-1 mr-2 bg-gray-800 hover:bg-gray-700 text-gray-100">
             <div className="flex justify-between items-center">
                 <h3 className="font-semibold">Proposal Id</h3>
                 <p className="text-sm text-gray-100">#106</p>

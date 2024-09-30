@@ -14,7 +14,7 @@ type Props = {
 const Pool: React.FC<Props> = ({ info }) => {
     const formattedDate = format(new Date(info.transaction_timestamp), 'yyyy-MM-dd HH:mm:ss')
     return (
-        <div className="block rounded-lg overflow-hidden transition-colors duration-300 mt-2 ml-1 mr-1 bg-gray-800 hover:bg-gray-700">
+        <div className="block rounded-lg transition-colors duration-300 mt-2 ml-1 mr-2 bg-gray-800 hover:bg-gray-700">
             <div className="p-3 flex items-center justify-between">
                 <div className="flex items-center">
                     <div className="w-6 h-6 flex-shrink-0 mr-3"></div>

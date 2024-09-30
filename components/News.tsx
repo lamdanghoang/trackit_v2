@@ -1,6 +1,6 @@
 const News = () => {
     return (
-        <div className="p-4 block rounded-lg overflow-hidden transition-colors duration-300 mt-2 ml-1 mr-1 bg-gray-800 hover:bg-gray-700 text-gray-50">
+        <div className="p-4 block rounded-lg transition-colors duration-300 mt-2 ml-1 mr-2 bg-gray-800 hover:bg-gray-700 text-gray-50">
             <div className="flex justify-between items-center">
                 <h3 className="font-semibold">CoinDesk</h3>
                 <span className="text-red-400 text-xs">Negative</span>

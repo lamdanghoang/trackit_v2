@@ -79,7 +79,7 @@ export default function Header() {
                                     </div>
                                 </div> */}
                                 <Button className="w-full" onClick={clickHandler}>
-                                    {!isClicked && (<><Wallet className="mr-2 h-4 w-4" /> Connect Wallet</>)}
+                                    {!isClicked && (<><Wallet className="mr-2 h-4 w-4" /> Login</>)}
                                     {isClicked && (<span>{`${"0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa".slice(0, 5)}...${"0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa".slice(-5)}`}</span>)}
                                 </Button>
                             </nav>
@@ -89,6 +89,11 @@ export default function Header() {
 
                 {/* Desktop menu */}
                 <div className="hidden md:flex items-center space-x-4">
+                    <div className="relative">
+                        <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                        <Input placeholder="Type your prompt" className="pl-8 w-[300px]" />
+                    </div>
+
                     <Select value={selectedChain} onValueChange={setSelectedChain}>
                         <SelectTrigger className="w-[120px]">
                             <SelectValue placeholder="Select chain" />
@@ -98,12 +103,9 @@ export default function Header() {
                             <SelectItem value="APTOS">APTOS</SelectItem>
                         </SelectContent>
                     </Select>
-                    {/* <div className="relative">
-                        <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                        <Input placeholder="Search address" className="pl-8 w-[300px]" />
-                    </div> */}
+
                     <Button onClick={clickHandler}>
-                        {!isClicked && (<><Wallet className="mr-2 h-4 w-4" /> Connect Wallet</>)}
+                        {!isClicked && (<><Wallet className="mr-2 h-4 w-4" /> Login </>)}
                         {isClicked && (<span>{`${"0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa".slice(0, 5)}...${"0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa".slice(-5)}`}</span>)}
                     </Button>
                 </div>

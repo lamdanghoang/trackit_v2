@@ -12,6 +12,8 @@ import Price from "../Price";
 import News from "../News";
 import TrackitSearch from "../TrackitSearch";
 import FilterForm from "../FilterForm";
+import { ScrollArea, ScrollBar } from "@/components/ui/ScrollArea"
+
 
 const dummy_airdrop = [
     {
@@ -114,33 +116,33 @@ const dummy_news = Array.from({ length: 3 }, () => {
 
 const HomePage = () => {
     return (
-        <main className="px-3 pt-4 pb-8">
+        <main className="px-3 py-4">
             <div className="max-w-[2400px] mx-auto grid gap-4 grid-cols-8 lg:grid-cols-12">
                 <div className="col-span-2 lg:col-span-3 hidden lg:block">
-                    <Panel title="Coins Created" className="max-h-[550px]">
+                    <Panel title="Coins Created" height="h-[490px]">
                         <List list={dummy_airdrop} />
                     </Panel>
                 </div>
                 <div className="col-span-8 lg:col-span-6 grid grid-cols-2 gap-4">
                     <div className="space-y-4">
-                        <Panel title="News" className="max-h-[300px]">
+                        <Panel title="News" height="h-[235px]">
                             <List list={dummy_news} />
                         </Panel>
-                        <Panel title="Prices" className="max-h-[250px]">
+                        <Panel title="Prices" height="h-[235px]">
                             <List list={dummy_price} />
                         </Panel>
                     </div>
                     <div className="space-y-4">
-                        <Panel title="Governance Vote" className="max-h-[300px]">
+                        <Panel title="Governance Vote" height="h-[235px]">
                             <List list={dummy_gov} />
                         </Panel>
-                        <Panel title="TrackItSearch" className="max-h-[250px]">
+                        <Panel title="TrackItSearch" height="h-[235px]">
                             <TrackitSearch />
                         </Panel>
                     </div>
                 </div>
                 <div className="col-span-2 lg:col-span-3 hidden lg:block">
-                    {/* <Panel title="Claimable Airdrops" className="max-h-[550px]">
+                    {/* <Panel title="Claimable Airdrops" className="max-h-[490px]">
                         <List list={dummy_airdrop} />
                     </Panel> */}
                     <FilterForm />

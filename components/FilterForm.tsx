@@ -3,6 +3,7 @@ import { Checkbox } from "@/components/ui/Checkbox"
 import { Input } from "@/components/ui/Input"
 import { Label } from "@/components/ui/Label"
 import { Button } from "@/components/ui/Button"
+import { ScrollArea } from './ui/ScrollArea'
 
 export default function FilterForm() {
     const [filters, setFilters] = useState({
@@ -54,7 +55,7 @@ export default function FilterForm() {
     }
 
     return (
-        <div className="bg-gray-800 text-white p-4 rounded-lg max-w-xs">
+        <ScrollArea className="h-[490px] bg-gray-800 text-white p-4 rounded-lg max-w-xs">
             <div className="space-y-4">
                 <div className="space-y-2">
                     {[
@@ -175,6 +176,6 @@ export default function FilterForm() {
                     </Button>
                 </div>
             </div>
-        </div>
+        </ScrollArea>
     )
 }

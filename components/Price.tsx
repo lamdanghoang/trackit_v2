@@ -1,6 +1,6 @@
 const Price = () => {
     return (
-        <div className="block rounded-lg overflow-hidden transition-colors duration-300 mt-2 ml-1 mr-1 bg-gray-800 hover:bg-gray-700">
+        <div className="block rounded-lg transition-colors duration-300 mt-2 ml-1 mr-2 bg-gray-800 hover:bg-gray-700">
             <div className="p-3 flex justify-between items-center">
                 <div className="flex items-center space-x-2 text-gray-50">
                     <div>

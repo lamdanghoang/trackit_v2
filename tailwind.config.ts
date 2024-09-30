@@ -59,6 +59,10 @@ const config: Config = {
         blue: {
           DEFAULT: "hsl(var(--custom-blue))",
           foreground: "hsl(var(--foreground))",
+        },
+        lido: {
+          DEFAULT: "hsl(var(--lido-color-accent-sky))",
+          foreground: "hsl(var(--foreground))",
         }
       },
       borderRadius: {
