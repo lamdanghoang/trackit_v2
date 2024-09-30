@@ -1,5 +1,4 @@
 import React from 'react'
-import { ChevronDown, Info } from 'lucide-react'
 
 const CustomFilters = () => {
     return (
