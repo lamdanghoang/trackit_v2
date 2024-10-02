@@ -13,6 +13,7 @@ import News from "../News";
 import TrackitSearch from "../TrackitSearch";
 import FilterForm from "../FilterForm";
 import { ScrollArea, ScrollBar } from "@/components/ui/ScrollArea"
+import { useWallet } from "@aptos-labs/wallet-adapter-react";
 
 
 const dummy_airdrop = [
@@ -115,6 +116,9 @@ const dummy_news = Array.from({ length: 3 }, () => {
 </li>);
 
 const HomePage = () => {
+    const { connect, disconnect, account, connected } = useWallet();
+    console.log(account);
+
     return (
         <main className="px-3 py-4">
             <div className="max-w-[2400px] mx-auto grid gap-4 grid-cols-8 lg:grid-cols-12">
