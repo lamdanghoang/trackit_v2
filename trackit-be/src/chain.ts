@@ -48,7 +48,7 @@ class AptosBlockChain implements Blockchain {
     async fetchGovernanceVotes(): Promise<any> {
         const operationsDoc = `
             query MyQuery {
-                proposal_votes(limit: 30) {
+                proposal_votes(limit: 30, order_by: {transaction_version: desc}) {
                     num_votes
                     proposal_id
                     should_pass
