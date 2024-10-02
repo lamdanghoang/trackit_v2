@@ -87,32 +87,38 @@ const dummy_airdrop = [
 
 const dummy_gov = Array.from({ length: 3 }, () => {
     return {
-        name: "ZKsync (ZK)",
-        price: 0.14,
-        change: 12.85,
+        proposal_id: 1,
+        num_votes: 100,
+        should_pass: false,
+        staking_pool_address: "0x00000",
+        transaction_timestamp: "24-09-08",
+        transaction_version: 123,
+        voter_address: "0x00000",
     }
 }).map((item, index) => <li key={index}>
-    <Governance />
+    <Governance info={item} />
 </li>);
 
 const dummy_price = Array.from({ length: 3 }, () => {
     return {
-        name: "ZKsync (ZK)",
+        name: "ZKsync",
+        symbol: "ZK",
         price: 0.14,
         change: 12.85,
     }
 }).map((item, index) => <li key={index}>
-    <Price />
+    <Price info={item} />
 </li>);
 
 const dummy_news = Array.from({ length: 3 }, () => {
     return {
-        name: "ZKsync (ZK)",
-        price: 0.14,
-        change: 12.85,
+        author: "CoinDesk",
+        is_positive: false,
+        time_created: "1h 18m ago",
+        content: "",
     }
 }).map((item, index) => <li key={index}>
-    <News />
+    <News info={item} />
 </li>);
 
 const HomePage = () => {
