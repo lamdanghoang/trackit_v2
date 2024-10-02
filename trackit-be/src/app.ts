@@ -3,6 +3,7 @@ import cors from 'cors';
 import axios from 'axios';
 import dotenv from 'dotenv';
 import { getBlockchain } from './chain'
+import { getAIInsights } from './aiSearch'
 
 dotenv.config();
 
@@ -10,6 +11,7 @@ const app = express();
 const port = process.env.PORT || 3003;
 
 app.use(cors({ origin: '*' }));
+app.use(express.json());
 
 app.get('/api/aptos-data', async (req, res) => {
   const blockchain = await getBlockchain("apt")
@@ -38,6 +40,13 @@ app.get('/api/apt-gov', async (req, res) => {
   //   console.error('Error fetching data from Nodit indexer:', error);
   //   res.status(500).json({ error: 'Error fetching data from Nodit indexer' });
   // }
+});
+
+app.post('/api/ai-search', async (req, res) => {
+  const request = req.body
+  const resp = await getAIInsights(request.prompt);
+  console.log("Ai search: ", resp);
+  res.json(resp.choices)
 });
 
 app.listen(port, () => {
