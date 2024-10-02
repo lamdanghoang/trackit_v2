@@ -33,18 +33,11 @@ class AptosBlockChain implements Blockchain {
         const model = await loadModel('mistral-7b-openorca.gguf2.Q4_0.gguf', {
             verbose: true,
             device: 'gpu',
-            // modelConfigFile: "./models3.json"
+            modelConfigFile: "./models3.json"
         });
 
         const prompt = `
-          Analyze the following blockchain package performance data and provide insights:
-          Total Transactions: ${analysisResults.totalTransactions}
-          Successful Transactions: ${analysisResults.successfulTransactions}
-          Unique Users: ${analysisResults.uniqueUsers}
-          Total Gas Used: ${analysisResults.totalGasUsed}
-          Daily Transaction Counts: ${JSON.stringify(analysisResults.dailyTransactionCount)}
-    
-          Please provide insights on usage trends, potential issues, and recommendations for improvement.
+          can you analyze to find which pool has highest yield in Aptos ?
         `;
 
         const response = await createCompletion(model, prompt, { verbose: true })
