@@ -32,14 +32,7 @@ app.get('/api/apt-gov', async (req, res) => {
   const blockchain = await getBlockchain("apt")
   const resp = await blockchain.fetchGovernanceVotes();
   console.log("Chain data: ", resp);
-  res.json(resp)
-  // try {
-  //   const response = await axios.get('https://api.nodit.io/aptos/v1/accounts');
-  //   res.json(response.data);
-  // } catch (error) {
-  //   console.error('Error fetching data from Nodit indexer:', error);
-  //   res.status(500).json({ error: 'Error fetching data from Nodit indexer' });
-  // }
+  res.json(resp)  
 });
 
 app.post('/api/ai-search', async (req, res) => {

@@ -14,7 +14,7 @@ import TrackitSearch from "../TrackitSearch";
 import FilterForm from "../FilterForm";
 import { ScrollArea, ScrollBar } from "@/components/ui/ScrollArea"
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
-
+import axios from 'axios';
 
 const dummy_airdrop = [
     {
@@ -85,19 +85,7 @@ const dummy_airdrop = [
     <Pool info={item} />
 </li>);
 
-const dummy_gov = Array.from({ length: 3 }, () => {
-    return {
-        proposal_id: 1,
-        num_votes: 100,
-        should_pass: false,
-        staking_pool_address: "0x00000",
-        transaction_timestamp: "24-09-08",
-        transaction_version: 123,
-        voter_address: "0x00000",
-    }
-}).map((item, index) => <li key={index}>
-    <Governance info={item} />
-</li>);
+
 
 const dummy_price = Array.from({ length: 3 }, () => {
     return {
@@ -121,9 +109,25 @@ const dummy_news = Array.from({ length: 3 }, () => {
     <News info={item} />
 </li>);
 
-const HomePage = () => {
+const HomePage = async () => {
     const { connect, disconnect, account, connected } = useWallet();
     console.log(account);
+    const url = "http://localhost:3003/api/apt-gov"
+    const response = await axios.get(url)
+    const gov_data = response.data.map((item: any) =>{
+        return {
+            proposal_id: item.proposal_id,
+            num_votes: item.num_votes,
+            should_pass: item.should_pass,
+            staking_pool_address: item.staking_pool_address,
+            transaction_timestamp: item.transaction_timestamp,
+            transaction_version: item.transaction_version,
+            voter_address: item.voter_address,
+        }
+    })
+    const dummy_gov = gov_data.map((item: any, index: any) => <li key={index}>
+        <Governance info={item} />
+    </li>);
 
     return (
         <main className="px-3 py-4">
