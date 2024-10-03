@@ -172,7 +172,7 @@ const HomePage = () => {
                             {isLoading ? (
                                 <div className="flex items-center justify-center h-full">Loading...</div>
                             ) : error ? (
-                                <div className="text-red-500">{error}</div>
+                                <div className="text-gray-50">{error}</div>
                             ) : (
                                 <List list={renderList(governanceVoteData, Governance)} />
                             )}
