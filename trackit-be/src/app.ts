@@ -3,7 +3,7 @@ import cors from 'cors';
 import axios from 'axios';
 import dotenv from 'dotenv';
 import { getBlockchain } from './chain'
-import { getAIInsights } from './aiSearch'
+import { getAIInsights, getTokenSentiment, getTokenIndicator } from './aiSearch'
 
 dotenv.config();
 
@@ -40,6 +40,16 @@ app.post('/api/ai-search', async (req, res) => {
   const resp = await getAIInsights(request.prompt);
   console.log("Ai search: ", resp);
   res.json(resp.choices)
+});
+
+app.get('/api/token-sentiment', async (req, res) => {
+  const resp = await getTokenSentiment();
+  res.json(resp)  
+});
+
+app.get('/api/token-indicator', async (req, res) => {
+  const resp = await getTokenIndicator();
+  res.json(resp)  
 });
 
 app.listen(port, () => {
