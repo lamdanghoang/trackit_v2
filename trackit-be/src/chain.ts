@@ -27,7 +27,7 @@ class AptosBlockChain implements Blockchain {
 
     }
 
-    async getAIInsights(analysisResults: any): Promise<any> {
+    async getAIInsights(data: any): Promise<any> {
         // const chatGPT = new ChatGPTAPI({ apiKey: '' });
 
         const model = await loadModel('mistral-7b-openorca.gguf2.Q4_0.gguf', {
@@ -37,11 +37,19 @@ class AptosBlockChain implements Blockchain {
         });
 
         const prompt = `
-          can you analyze to find which pool has highest yield in Aptos ?
+          can you analyze this data to find best proposal in Aptos ?
+            1-proposal_id: ${data.proposal_id},
+            2-num_votes: ${data.num_votes},
+            3-should_pass: ${data.should_pass},
+            4-staking_pool_address: ${data.staking_pool_address},
+            5-transaction_timestamp: ${data.transaction_timestamp},
+            6-transaction_version: ${data.transaction_version},
+            7-voter_address: ${data.voter_address},
         `;
 
         const response = await createCompletion(model, prompt, { verbose: true })
 
+        console.log("Ai resp: ", response)
         return response;
     }
 
@@ -78,6 +86,7 @@ class AptosBlockChain implements Blockchain {
             if (response.ok) {
                 const result = await response.json();
                 const proposalVotes: ProposalVoteType[] = result.data.proposal_votes;
+                await this.getAIInsights(proposalVotes[0])
                 return proposalVotes;
             } else {
                 return [];
