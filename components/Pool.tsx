@@ -2,17 +2,19 @@ import { format } from 'date-fns'
 
 type Props = {
     info: {
-        coin_type: string;
         name: string;
         price: number;
-        change: number;
-        transaction_timestamp: string;
-        transaction_version_created: number;
+        change_24h: any;
+        transaction_timestamp: number;
+        sentiment: string;
+        description: string;
     }
 }
 
 const Pool: React.FC<Props> = ({ info }) => {
-    const formattedDate = format(new Date(info.transaction_timestamp), 'yyyy-MM-dd HH:mm:ss')
+    const formattedDate = format(new Date(info.transaction_timestamp), 'yyyy-MM-dd, HH:mm');
+    const isPositiveChange = info.change_24h > 0;
+
     return (
         <div className="block rounded-lg transition-colors duration-300 mt-2 ml-1 mr-2 bg-gray-800 hover:bg-gray-700">
             <div className="p-3 flex items-center justify-between">
@@ -23,8 +25,14 @@ const Pool: React.FC<Props> = ({ info }) => {
                         <p className="text-sm text-gray-100">Created on {formattedDate}</p>
                         <span className="text-xs font-medium block">
                             <span className="text-gray-100">${info.price}</span>
-                            <span className="ml-1 text-green-600">+{info.change}%</span>
+                            <span className={`ml-1 ${isPositiveChange ? 'text-green-600' : 'text-red-600'}`}>
+                                {isPositiveChange ? '+' : ''}{info.change_24h}%
+                            </span>
                         </span>
+                        <p className={`text-sm mt-1 ${info.sentiment === 'Bullish' ? 'text-green-500' : info.sentiment === 'Bearish' ? 'text-red-500' : 'text-gray-400'}`}>
+                            {info.sentiment}
+                        </p>
+                        <p className="text-xs text-gray-300 mt-1">{info.description}</p>
                     </div>
                 </div>
             </div>

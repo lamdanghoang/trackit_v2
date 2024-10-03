@@ -86,7 +86,6 @@ class AptosBlockChain implements Blockchain {
             if (response.ok) {
                 const result = await response.json();
                 const proposalVotes: ProposalVoteType[] = result.data.proposal_votes;
-                await this.getAIInsights(proposalVotes[0])
                 return proposalVotes;
             } else {
                 return [];
