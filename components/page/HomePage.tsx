@@ -18,25 +18,27 @@ import axios from 'axios';
 import { GovernanceInfo, TokenSentimentInfo, TokenIndicatorInfo } from "@/lib/interface";
 import { API_URL } from "@/constants/constants";
 
-// const dummy_price = Array.from({ length: 3 }, () => {
-//     return {
-//         name: "ZKsync",
-//         symbol: "ZK",
-//         price: 0.14,
-//         change: 12.85,
-//     }
-// }).map((item, index) => <li key={index}>
-//     <Price info={item} />
-// </li>);
-
-const dummy_news = Array.from({ length: 3 }, () => {
-    return {
+const dummy_news = [
+    {
+        author: "Lido",
+        is_positive: false,
+        time_created: "1h 29m ago",
+        content: "Introducing the Community Staking Module Early Adoption Program: A Unique Opportunity for Solo Stakers 🌐",
+    },
+    {
+        author: "The Block",
+        is_positive: false,
+        time_created: "1h 31m ago",
+        content: "Bitwise revamps three of its crypto futures ETFs to rotate in Treasuries in an effort to curb volatility",
+    },
+    {
         author: "CoinDesk",
         is_positive: false,
-        time_created: "1h 18m ago",
-        content: "",
-    }
-}).map((item, index) => <li key={index}>
+        time_created: "13h 18m ago",
+        content: "Canada's CBDC Departure Risks Web3's Interoperable Future. A lack of interoperability poses an existential threat to central bank digital currencies, as it does to Web3 itself, says Temujin Louie, CEO of Wanchain.",
+    },
+
+].map((item, index) => <li key={index}>
     <News info={item} />
 </li>);
 
@@ -125,6 +127,7 @@ const HomePage = () => {
             }
         }
 
+
         fetchGovernanceVoteData();
         getTokenSentiment();
         getTokenIndicator()
@@ -134,7 +137,7 @@ const HomePage = () => {
         <main className="px-3 py-4">
             <div className="max-w-[2400px] mx-auto grid gap-4 grid-cols-8 lg:grid-cols-12">
                 <div className="col-span-2 lg:col-span-3 hidden lg:block">
-                    <Panel title="Token Sentiment" height="h-[490px]">
+                    <Panel title="Token Sentiment" height="h-[450px]">
                         {isLoading ? (
                             <div className="flex items-center justify-center h-full text-gray-50">Loading...</div>
                         ) : error ? (
@@ -146,10 +149,10 @@ const HomePage = () => {
                 </div>
                 <div className="col-span-8 lg:col-span-6 grid grid-cols-2 gap-4">
                     <div className="space-y-4">
-                        <Panel title="Analysis" height="h-[235px]">
+                        <Panel title="Analysis" height="h-[197px]">
                             <List list={dummy_news} />
                         </Panel>
-                        <Panel title="Token Indicator" height="h-[235px]">
+                        <Panel title="Token Indicator" height="h-[197px]">
                             {isLoading ? (
                                 <div className="flex items-center justify-center h-full text-gray-50">Loading...</div>
                             ) : error ? (
@@ -160,7 +163,7 @@ const HomePage = () => {
                         </Panel>
                     </div>
                     <div className="space-y-4">
-                        <Panel title="Proposal Effects" height="h-[235px]">
+                        <Panel title="Proposal Effects" height="h-[197px]">
                             {isLoading ? (
                                 <div className="flex items-center justify-center h-full text-gray-50">Loading...</div>
                             ) : error ? (
@@ -169,7 +172,7 @@ const HomePage = () => {
                                 <List list={renderList(governanceVoteData, Governance)} />
                             )}
                         </Panel>
-                        <Panel title="TrackItSearch" height="h-[235px]">
+                        <Panel title="TrackItSearch" height="h-[197px]">
                             <TrackitSearch />
                         </Panel>
                     </div>
