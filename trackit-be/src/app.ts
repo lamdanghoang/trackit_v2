@@ -32,7 +32,7 @@ app.get('/api/apt-gov', async (req, res) => {
   const blockchain = await getBlockchain("apt")
   const resp = await blockchain.fetchGovernanceVotes();
   console.log("Chain data: ", resp);
-  res.json(resp)  
+  res.json(resp)
 });
 
 app.post('/api/ai-search', async (req, res) => {

@@ -8,7 +8,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import List from "../List";
 import Governance from "../Gov";
 import { Search, X, Maximize2, DollarSign, BarChart2, TrendingUp, Droplet } from 'lucide-react'
-import Price from "../Price";
+import Indicator from "../Indicator";
 import News from "../News";
 import TrackitSearch from "../TrackitSearch";
 import FilterForm from "../FilterForm";
@@ -16,17 +16,6 @@ import { ScrollArea, ScrollBar } from "@/components/ui/ScrollArea"
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
 import axios from 'axios';
 import { GovernanceInfo, TokenSentimentInfo, TokenIndicatorInfo } from "@/lib/interface";
-
-const dummy_price = Array.from({ length: 3 }, () => {
-    return {
-        name: "ZKsync",
-        symbol: "ZK",
-        price: 0.14,
-        change: 12.85,
-    }
-}).map((item, index) => <li key={index}>
-    <Price info={item} />
-</li>);
 
 const dummy_news = Array.from({ length: 3 }, () => {
     return {
@@ -49,7 +38,6 @@ const renderList = (items: any[], Component: React.ComponentType<{ info: any }>)
 
 const HomePage = () => {
     const { connect, disconnect, account, connected } = useWallet();
-
     const [governanceVoteData, setGovernanceVoteData] = useState<GovernanceInfo[]>([]);
     const [tokenSentimentData, setTokenSentimentData] = useState<TokenSentimentInfo[]>([]);
     const [tokenIndicatorData, setTokenIndicatorData] = useState<TokenIndicatorInfo[]>([]);
@@ -156,7 +144,7 @@ const HomePage = () => {
                                 ) : error ? (
                                     <div className="text-red-500">{error}</div>
                                 ) : (
-                                    <List list={renderList(tokenIndicatorData, Price)} />
+                                    <List list={renderList(tokenIndicatorData, Indicator)} />
                             )}
                         </Panel>
                     </div>
@@ -165,7 +153,7 @@ const HomePage = () => {
                             {isLoading ? (
                                 <div className="flex items-center justify-center h-full">Loading...</div>
                             ) : error ? (
-                                <div className="text-red-500">{error}</div>
+                                <div className="text-gray-50">{error}</div>
                             ) : (
                                 <List list={renderList(governanceVoteData, Governance)} />
                             )}
