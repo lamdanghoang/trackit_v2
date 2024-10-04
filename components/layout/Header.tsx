@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Button } from "@/components/ui/Button"
 import { Input } from "@/components/ui/Input"
 import {
@@ -18,14 +18,24 @@ import {
 } from "@/components/ui/Sheet"
 import { WalletSelector } from "@aptos-labs/wallet-adapter-ant-design"
 import "@aptos-labs/wallet-adapter-ant-design/dist/index.css"
+import GlobalContext from '@/context/store'
 
 export default function Header() {
+    const { setLoadingFullScreen } = useContext(GlobalContext);
     const [selectedChain, setSelectedChain] = useState('APTOS');
     const [input, setInput] = useState<string>();
 
     const changeHandler = (value: string) => {
         setInput(value);
         console.log(input);
+    }
+
+    const submitHandler = (e: any) => {
+        e.preventDefault();
+        console.log(input);
+        setLoadingFullScreen(true);
+        setTimeout(() => setLoadingFullScreen(false), 2000)
+        setInput("");
     }
 
     return (
@@ -76,10 +86,14 @@ export default function Header() {
                                     <label htmlFor="mobile-search" className="text-sm font-medium">
                                         Search Address
                                     </label>
-                                    <div className="relative">
+                                    <form className="relative" onSubmit={e => submitHandler(e)}>
                                         <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                                        <Input onChange={e => changeHandler(e.target.value)} id="search" placeholder="Type your prompt" className="pl-8" />
-                                    </div>
+                                        <Input onChange={e => changeHandler(e.target.value)}
+                                            id="search" placeholder="Type your prompt" className="pl-8"
+                                            value={input}
+                                        />
+                                        <Input type="submit" value="Search" className='hidden' />
+                                    </form>
                                 </div>
                                 {/* <Button className="w-full" onClick={clickHandler}>
                                     {!isClicked && (<><Wallet className="mr-2 h-4 w-4" /> Login</>)}
@@ -93,10 +107,11 @@ export default function Header() {
 
                 {/* Desktop menu */}
                 <div className="hidden md:flex items-center space-x-4">
-                    <div className="relative">
+                    <form className="relative" onSubmit={e => submitHandler(e)}>
                         <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                        <Input onChange={e => changeHandler(e.target.value)} id="search" placeholder="Type your prompt" className="pl-8 w-[300px]" />
-                    </div>
+                        <Input value={input} onChange={e => changeHandler(e.target.value)} id="search" placeholder="Type your prompt" className="pl-8 w-[300px]" />
+                        <Input type="submit" value="Search" className='hidden' />
+                    </form>
 
                     <Select value={selectedChain} onValueChange={setSelectedChain}>
                         <SelectTrigger className="w-[120px]">
