@@ -16,6 +16,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/ScrollArea"
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
 import axios from 'axios';
 import { GovernanceInfo, TokenSentimentInfo, TokenIndicatorInfo } from "@/lib/interface";
+import { API_URL } from "@/constants/constants";
 
 // const dummy_price = Array.from({ length: 3 }, () => {
 //     return {
@@ -59,7 +60,7 @@ const HomePage = () => {
     useEffect(() => {
         const fetchGovernanceVoteData = async () => {
             try {
-                const response = await axios.get('http://localhost:3003/api/apt-gov');
+                const response = await axios.get(`${API_URL}/api/apt-gov`);
                 const formattedData: GovernanceInfo[] = response.data.map((item: any) => ({
                     proposal_id: item.proposal_id,
                     num_votes: item.num_votes,
@@ -80,7 +81,7 @@ const HomePage = () => {
 
         const getTokenSentiment = async () => {
             try {
-                const response = await axios.get('http://localhost:3003/api/token-sentiment');
+                const response = await axios.get(`${API_URL}/api/token-sentiment`);
                 console.log("Token sentiment: ", response.data)
                 const formattedData: TokenSentimentInfo[] = response.data.map((item: any) => ({
                     name: item.name,
@@ -102,7 +103,7 @@ const HomePage = () => {
 
         const getTokenIndicator = async () => {
             try {
-                const response = await axios.get('http://localhost:3003/api/token-indicator');
+                const response = await axios.get(`${API_URL}/api/token-indicator`);
                 const formattedData: TokenIndicatorInfo[] = response.data.map((item: any) => ({
                     name: item.name,
                     symbol: item.symbol,
@@ -135,7 +136,7 @@ const HomePage = () => {
                 <div className="col-span-2 lg:col-span-3 hidden lg:block">
                     <Panel title="Token Sentiment" height="h-[490px]">
                         {isLoading ? (
-                            <div className="flex items-center justify-center h-full">Loading...</div>
+                            <div className="flex items-center justify-center h-full text-gray-50">Loading...</div>
                         ) : error ? (
                             <div className="text-red-500">{error}</div>
                         ) : (
@@ -150,7 +151,7 @@ const HomePage = () => {
                         </Panel>
                         <Panel title="Token Indicator" height="h-[235px]">
                             {isLoading ? (
-                                <div className="flex items-center justify-center h-full">Loading...</div>
+                                <div className="flex items-center justify-center h-full text-gray-50">Loading...</div>
                             ) : error ? (
                                 <div className="text-red-500">{error}</div>
                             ) : (
@@ -161,9 +162,9 @@ const HomePage = () => {
                     <div className="space-y-4">
                         <Panel title="Proposal Effects" height="h-[235px]">
                             {isLoading ? (
-                                <div className="flex items-center justify-center h-full">Loading...</div>
+                                <div className="flex items-center justify-center h-full text-gray-50">Loading...</div>
                             ) : error ? (
-                                <div className="text-gray-50">{error}</div>
+                                <div className="text-red-500">{error}</div>
                             ) : (
                                 <List list={renderList(governanceVoteData, Governance)} />
                             )}
