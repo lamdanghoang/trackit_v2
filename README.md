@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TrackIt: Decentralized Multi-Chain Analytics Tool
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D14.0.0-brightgreen)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-4.5%2B-blue)](https://www.typescriptlang.org/)
+[![Multi-Chain](https://img.shields.io/badge/Multi--Chain-Ready-orange)](https://trackit.com)
+
+TrackIt is a powerful decentralized analytics tool designed to help users analyze on-chain data from multiple protocols across various blockchain networks. With its intuitive dashboard and comprehensive features, TrackIt enables users to gain valuable insights, track token performance, and make informed decisions in the decentralized finance (DeFi) space.
+
+## Features
+
+- **Multi-Chain Support**: Analyze data from various blockchain networks, including Aptos, Ethereum, Binance Smart Chain, and more.
+- **Token Sentiment Analysis**: Track the sentiment and performance of different tokens across supported chains.
+- **Proposal Effects Monitoring**: Stay updated on the impact of governance proposals on various protocols.
+- **Real-time Market Data**: Access up-to-date information on token prices, trading volumes, and market trends.
+- **Custom Dashboard Creation**: Build personalized dashboards to track the metrics that matter most to you.
+- **Advanced Filtering**: Use powerful filters to narrow down your analysis based on market cap, holder count, and more.
+- **Wallet Integration**: Connect your wallet for a more personalized experience and to track your own holdings.
+- **Exportable Reports**: Generate and export detailed analysis reports for your research or business needs.
 
 ## Getting Started
 
-First, run the development server:
+To start using TrackIt, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Visit [https://trackit.com](https://trackit.com) in your web browser.
+2. Click on the "Connect Wallet" button in the top right corner.
+3. Select your preferred blockchain network from the dropdown menu (e.g., APTOS).
+4. Use the search bar to find specific tokens or protocols you're interested in.
+5. Explore the various sections of the dashboard:
+   - Token Sentiment
+   - Analysis
+   - Proposal Effects
+   - Token Indicator
+   - TrackItSearch
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Dashboard Sections
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Token Sentiment
+View the current sentiment and key metrics for popular tokens on the selected network.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Analysis
+Read the latest news and analysis about significant events in the crypto space.
 
-## Learn More
+### Proposal Effects
+Track the outcomes and impacts of governance proposals on various protocols.
 
-To learn more about Next.js, take a look at the following resources:
+### Token Indicator
+Get detailed technical indicators for specific tokens to aid in your trading decisions.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### TrackItSearch
+Use our powerful search feature to find any token, protocol, or transaction across supported networks.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Customization
 
-## Deploy on Vercel
+TrackIt offers various customization options to tailor your analytics experience:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Filters**: Use the right sidebar to filter results based on:
+  - Social media presence
+  - Top holders
+  - Developer activity
+  - Market capitalization
+  - Total holders
+  - Creation date
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Custom Dashboards**: Create and save custom dashboards to focus on the metrics and tokens that matter most to you.
+
+## Support
+
+If you encounter any issues or have questions about using TrackIt, please visit our [Help Center](https://trackit.com/help) or contact our support team at support@trackit.com.
+
+## Contributing
+
+We welcome contributions from the community! If you'd like to contribute to TrackIt, please check out our [Contributing Guidelines](CONTRIBUTING.md) for more information on how to get started.
+
+## License
+
+TrackIt is open-source software licensed under the MIT license. See the [LICENSE](LICENSE) file for more details.
+
+---
+
+Start tracking and analyzing on-chain data like never before with TrackIt! 📊🚀
