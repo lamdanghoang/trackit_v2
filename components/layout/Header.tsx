@@ -16,9 +16,9 @@ import {
     SheetContent,
     SheetTrigger,
 } from "@/components/ui/Sheet"
-import { WalletSelector } from "@aptos-labs/wallet-adapter-ant-design"
-import "@aptos-labs/wallet-adapter-ant-design/dist/index.css"
+import { WalletSelector } from "@/components/provider/WalletSelector"
 import GlobalContext from '@/context/store'
+import Link from 'next/link'
 
 export default function Header() {
     const { setLoadingFullScreen } = useContext(GlobalContext);
@@ -42,7 +42,7 @@ export default function Header() {
         <header className="border-b">
             <div className="container mx-auto px-5 py-3 flex items-center justify-between">
                 {/* Logo */}
-                <div className="flex items-center text-white">
+                <Link href="/" className="flex items-center text-white">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -56,7 +56,7 @@ export default function Header() {
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                     </svg>
                     <span className="font-bold text-xl">TrackIt</span>
-                </div>
+                </Link>
 
                 {/* Mobile menu */}
                 <div className="md:hidden">

@@ -1,6 +1,16 @@
+import { useRouter } from 'next/navigation';
 import { Search } from "lucide-react";
+import { useWallet } from '@aptos-labs/wallet-adapter-react';
 
 const TrackitSearch = () => {
+    const { account } = useWallet();
+    const router = useRouter();
+
+    const submitHandler = (e: any) => {
+        e.preventDefault();
+        router.push('/pools')
+    };
+
     return (
         <div className="flex flex-col items-center space-y-14 text-white">
             <div className="flex flex-col items-center space-y-4">
@@ -18,10 +28,10 @@ const TrackitSearch = () => {
                 </svg>
                 <h3 className="text-xl font-bold">Search</h3>
             </div>
-            <div className="relative w-3/4">
+            <form className="relative w-3/4" onSubmit={submitHandler}>
                 <Search className="absolute left-2 top-1/2 h-4 w-4 -translate-y-1/2 transform text-gray-500" />
-                <input type="search" placeholder="Search..." className="pl-8 bg-gray-700 border-gray-600 w-full" />
-            </div>
+                <input disabled={account === null} type="search" placeholder="Search..." className="pl-8 bg-gray-700 border-gray-600 w-full" />
+            </form>
         </div>
     )
 }
