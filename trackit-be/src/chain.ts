@@ -15,7 +15,6 @@ export interface Blockchain {
     getAIInsights(analysisResults: any): Promise<any>;
 }
 
-
 class AptosBlockChain implements Blockchain {
     private url: any;
 

@@ -1,7 +1,7 @@
 "use client";
 import Panel from "../Panel";
 import Pool from "../Pool";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -17,30 +17,7 @@ import { useWallet } from "@aptos-labs/wallet-adapter-react";
 import axios from 'axios';
 import { GovernanceInfo, TokenSentimentInfo, TokenIndicatorInfo } from "@/lib/interface";
 import { API_URL } from "@/constants/constants";
-
-const dummy_news = [
-    {
-        author: "Lido",
-        is_positive: false,
-        time_created: "1h 29m ago",
-        content: "Introducing the Community Staking Module Early Adoption Program: A Unique Opportunity for Solo Stakers 🌐",
-    },
-    {
-        author: "The Block",
-        is_positive: false,
-        time_created: "1h 31m ago",
-        content: "Bitwise revamps three of its crypto futures ETFs to rotate in Treasuries in an effort to curb volatility",
-    },
-    {
-        author: "CoinDesk",
-        is_positive: false,
-        time_created: "13h 18m ago",
-        content: "Canada's CBDC Departure Risks Web3's Interoperable Future. A lack of interoperability poses an existential threat to central bank digital currencies, as it does to Web3 itself, says Temujin Louie, CEO of Wanchain.",
-    },
-
-].map((item, index) => <li key={index}>
-    <News info={item} />
-</li>);
+import GlobalContext from '@/context/store'
 
 const renderList = (items: any[], Component: React.ComponentType<{ info: any }>) => {
     return items.map((item, index) => (
@@ -52,9 +29,11 @@ const renderList = (items: any[], Component: React.ComponentType<{ info: any }>)
 
 const HomePage = () => {
     const { connect, disconnect, account, connected } = useWallet();
+    const { loadingFullScreen } = useContext(GlobalContext);
     const [governanceVoteData, setGovernanceVoteData] = useState<GovernanceInfo[]>([]);
     const [tokenSentimentData, setTokenSentimentData] = useState<TokenSentimentInfo[]>([]);
     const [tokenIndicatorData, setTokenIndicatorData] = useState<TokenIndicatorInfo[]>([]);
+    const [newsData, setNewsData] = useState<any[]>([]);
 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -103,6 +82,26 @@ const HomePage = () => {
             }
         }
 
+        const getNews = async () => {
+            try {
+                const response = await axios.get(`${API_URL}/api/news`);
+                console.log("News: ", response.data)
+                const news_list = response.data.map((item: any) => ({
+                    author: item.author,
+                    is_positive: item.is_positive,
+                    time_created: item.time_created,
+                    content: item.content,
+                }));
+                console.log("Token format: ", news_list)
+                setNewsData(news_list);
+            } catch (err) {
+                setError('Failed to fetch news data');
+                console.error('Error fetching news data:', err);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+
         const getTokenIndicator = async () => {
             try {
                 const response = await axios.get(`${API_URL}/api/token-indicator`);
@@ -130,8 +129,9 @@ const HomePage = () => {
 
         fetchGovernanceVoteData();
         getTokenSentiment();
-        getTokenIndicator()
-    }, []);
+        getTokenIndicator();
+        getNews();
+    }, [loadingFullScreen]);
 
     return (
         <main className="px-3 py-4">
@@ -150,7 +150,13 @@ const HomePage = () => {
                 <div className="col-span-8 lg:col-span-6 grid grid-cols-2 gap-4">
                     <div className="space-y-4">
                         <Panel title="Analysis" height="h-[197px]">
-                            <List list={dummy_news} />
+                            {isLoading ? (
+                                <div className="flex items-center justify-center h-full text-gray-50">Loading...</div>
+                            ) : error ? (
+                                <div className="text-red-500">{error}</div>
+                            ) : (
+                                <List list={renderList(newsData, News)} />
+                            )}
                         </Panel>
                         <Panel title="Token Indicator" height="h-[197px]">
                             {isLoading ? (
