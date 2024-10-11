@@ -19,11 +19,13 @@ import {
 import { WalletSelector } from "@/components/provider/WalletSelector"
 import GlobalContext from '@/context/store'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
     const { setLoadingFullScreen } = useContext(GlobalContext);
     const [selectedChain, setSelectedChain] = useState('APTOS');
     const [input, setInput] = useState<string>();
+    const router = useRouter();
 
     const changeHandler = (value: string) => {
         setInput(value);
@@ -36,6 +38,7 @@ export default function Header() {
         setLoadingFullScreen(true);
         setTimeout(() => setLoadingFullScreen(false), 2000)
         setInput("");
+        router.push('/pools');
     }
 
     return (

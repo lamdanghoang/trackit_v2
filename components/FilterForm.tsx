@@ -8,8 +8,8 @@ import Popup from './Popup'
 import toast, { Toaster } from 'react-hot-toast'
 import { Deserializer, SimpleTransaction, U64 } from '@aptos-labs/ts-sdk';
 import {
-  SignMessageResponse,
-  useWallet
+    SignMessageResponse,
+    useWallet
 } from '@aptos-labs/wallet-adapter-react';
 
 const FilterForm = () => {
@@ -19,7 +19,7 @@ const FilterForm = () => {
         signTransaction,
         submitTransaction,
         signAndSubmitTransaction
-      } = useWallet();
+    } = useWallet();
 
     const [filters, setFilters] = useState({
         withAtLeast1Social: false,
@@ -69,18 +69,18 @@ const FilterForm = () => {
         toast.success('Filters applied successfully');
 
         const module_adr = "0xaaf5681a00ad1b4c62887a4ba51d57f910130d34d9052abddd4546b042813bc2"
-        const module = "trackit"
+        const modul = "trackit"
         const name = "create_user_profile"
 
         const tx = await signAndSubmitTransaction({
             data: {
-              function: `${module_adr}::${module}::${name}`,
-              typeArguments: [],
-              functionArguments: [
-                "PQD",
-                "PQD",
-                "PQD"
-              ]
+                function: `${module_adr}::${modul}::${name}`,
+                typeArguments: [],
+                functionArguments: [
+                    "PQD",
+                    "PQD",
+                    "PQD"
+                ]
             }
         });
 
