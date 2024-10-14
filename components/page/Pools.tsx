@@ -1,6 +1,8 @@
 "use client";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Rectangle } from 'recharts'
 import { Search, ChevronDown } from 'lucide-react'
+import BarChart from '../BarChart';
+import { Button } from '../ui/Button';
+import { Input } from '../ui/Input';
 
 const chartData = [
     { name: 'ETH-USDC', TVL: 100000, Volume: 80000 },
@@ -22,31 +24,66 @@ export default function Pools() {
     return (
         <main className="container mx-auto px-3 py-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                <div className="bg-white rounded-lg shadow">
-                    <h3 className="px-4 py-2 rounded-t-lg flex items-center text-lg font-semibold bg-lido/90 text-gray-50 backdrop-blur-sm">
-                        Total Value Locked
+                <div className="bg-panel rounded-lg shadow">
+                    <h3 className="px-4 py-2 rounded-t-lg flex items-center text-lg font-semibold text-blue-400 backdrop-blur-sm">
+                        Trading Request
                     </h3>
-                    <p className="flex p-4 text-3xl font-bold items-center">$4,200,000</p>
+                    {/* <div className="px-6 text-3xl font-bold text-gray-50">$0.56</div> */}
+                    <div className="mt-2 px-6 py-2 flex justify-between items-center ">
+                        <div>
+                            <div className="text-sm text-gray-200 font-bold">Token</div>
+                            {/* <div className="text-sm text-gray-400">1.68%</div> */}
+                        </div>
+                        <Input className="w-1/4 px-2 py-1 rounded " /> Lists of token
+                    </div>
+                    <div className="px-6 py-2 flex justify-between items-center ">
+                        <div>
+                            <div className="text-sm text-gray-200 font-bold">Position</div>
+                            {/* <div className="text-sm text-gray-400">20.45%</div> */}
+                        </div>
+                        <Input className="w-1/4 px-2 py-1" /> Buy/Sell
+                    </div>
+                    {/* <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white">
+                        Simulate Position Performance
+                    </Button> */}
                 </div>
-                <div className="bg-white rounded-lg shadow">
-                    <h3 className="px-4 py-2 rounded-t-lg flex items-center text-lg font-semibold bg-lido/90 text-gray-50 backdrop-blur-sm">
-                        24h Volume
+                <div className="bg-panel rounded-lg shadow">
+                    <h3 className="px-4 py-2 rounded-t-lg flex items-center text-lg font-semibold text-blue-400 backdrop-blur-sm">
+                        Deposit Amount
                     </h3>
-                    <p className="flex p-4 text-3xl font-bold items-center">$1,850,000</p>
+                    <div className='px-5 h-9 '>
+                        <Input placeholder='Type your amount' className="px-2 py-1" />
+                    </div>
+                    <div className="mt-2 px-6 py-2 flex justify-between items-center ">
+                        <div>
+                            <div className="text-sm text-gray-200 font-bold">Expect Profit</div>
+                            <div className="text-sm text-gray-400">(%)</div>
+                        </div>
+                        <Input className="w-1/4 px-2 py-1 rounded " />
+                    </div>
+                    <div className="px-6 py-2 flex justify-between items-center ">
+                        <div>
+                            <div className="text-sm text-gray-200 font-bold">Expect Loss</div>
+                            <div className="text-sm text-gray-400">(%)</div>
+                        </div>
+                        <Input className="w-1/4 px-2 py-1" />
+                    </div>
+                    {/* <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white">
+                        Simulate Position Performance
+                    </Button> */}
                 </div>
-                <div className="bg-white rounded-lg shadow">
-                    <h3 className="px-4 py-2 rounded-t-lg flex items-center text-lg font-semibold bg-lido/90 text-gray-50 backdrop-blur-sm">
-                        Active Pools
-                    </h3>
-                    <p className="flex p-4 text-3xl font-bold items-center">5</p>
+                <div className="bg-panel rounded-lg shadow">
+                    <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white">
+                        Simulate Position Performance
+                    </Button>
                 </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow mb-8">
-                <h3 className="px-4 py-2 mb-5 rounded-t-lg flex items-center text-xl font-bold bg-lido/90 text-gray-50 backdrop-blur-sm">
-                    Pools Performance
+            <div className="bg-panel rounded-lg shadow mb-8">
+                <h3 className="px-4 py-4 mb-5 flex items-center text-xl font-bold bg-panel text-blue-400 backdrop-blur-sm rounded-t-lg">
+                    Chart
                 </h3>
-                <ResponsiveContainer width="100%" height={300} >
+                {/* <ResponsiveContainer width="100%" height={300} >
                     <BarChart data={chartData}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" />
@@ -56,34 +93,38 @@ export default function Pools() {
                         <Bar dataKey="TVL" fill="#8884d8" name="TVL" activeBar={<Rectangle fill="pink" stroke="blue" />} />
                         <Bar dataKey="Volume" fill="#82ca9d" name="24h Volume" activeBar={<Rectangle fill="gold" stroke="purple" />} />
                     </BarChart>
-                </ResponsiveContainer>
+                </ResponsiveContainer> */}
+                <BarChart />
             </div>
 
-            <div className="bg-white rounded-lg shadow">
-                <h3 className="px-6 py-2 rounded-t-lg flex items-center text-xl font-bold bg-lido/90 text-gray-50 backdrop-blur-sm">
-                    Pools
-                </h3>
-                <div className="px-6 py-2 flex justify-between items-center">
-                    <div className="relative">
-                        <input
-                            type="text"
-                            placeholder="Search pools..."
-                            className="pl-10 pr-4 py-2 border border-gray-500 rounded-lg"
-                        />
-                        <Search className="absolute left-3 top-2.5 text-gray-400" size={20} />
-                    </div>
-                    {/* <button className="flex items-center bg-gray-200 px-4 py-2 rounded-lg">
+
+            <div className="bg-panel rounded-lg shadow">
+                <div className='flex justify-between items-center'>
+                    <h3 className="px-6 py-2 rounded-t-lg flex items-center text-xl font-bold bg-panel text-blue-400 backdrop-blur-sm">
+                        History
+                    </h3>
+                    <div className="px-6 py-2 flex justify-between items-center">
+                        <div className="relative">
+                            <input
+                                type="text"
+                                placeholder="Search pools..."
+                                className="pl-10 pr-4 py-2 border border-gray-500 rounded-lg bg-gray-100"
+                            />
+                            <Search className="absolute left-3 top-2.5 text-gray-400" size={20} />
+                        </div>
+                        {/* <button className="flex items-center bg-gray-200 px-4 py-2 rounded-lg">
                         Sort by <ChevronDown className="ml-2" size={20} />
                     </button> */}
+                    </div>
                 </div>
-                <div className='px-6 '>
+                <div className='px-6 py-4 bg-gray-100 rounded-lg '>
                     <table className="w-full">
                         <thead>
                             <tr className="text-left text-gray-600">
-                                <th className="pb-2">Pool</th>
-                                <th className="pb-2">TVL</th>
+                                <th className="pb-2">Symbol</th>
+                                <th className="pb-2">Amount</th>
                                 <th className="pb-2">24h Volume</th>
-                                <th className="pb-2">APY</th>
+                                <th className="pb-2">PNL</th>
                             </tr>
                         </thead>
                         <tbody>

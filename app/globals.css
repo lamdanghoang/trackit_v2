@@ -34,6 +34,9 @@
     --custom-green: 142.1 76.2% 36.3%;
     --custom-blue: 217.2 91.2% 59.8%;
     --lido-color-accent-sky: 202 100% 50%;
+    --panel-color: 240 8% 22%;
+    --item-color: 240 8% 19%;
+    --border-color: 240 4.7% 29.2%;
 
     --ring: 215 20.2% 65.1%;
 
@@ -82,7 +85,8 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    background-color: #111627;
+    background-color: rgb(28, 28, 33);
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   }
 }
 

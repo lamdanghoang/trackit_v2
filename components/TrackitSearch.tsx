@@ -8,7 +8,7 @@ const TrackitSearch = () => {
 
     const submitHandler = (e: any) => {
         e.preventDefault();
-        router.push('/pools')
+        router.push('/kana')
     };
 
     return (

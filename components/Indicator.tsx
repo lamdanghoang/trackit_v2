@@ -14,7 +14,7 @@ type Props = {
 
 const Indicator: React.FC<Props> = ({ info }) => {
     return (
-        <div className="block rounded-lg transition-colors duration-300 mt-2 mx-2 bg-gray-800 hover:bg-gray-700 text-gray-50">
+        <div className="block rounded-lg transition-colors duration-300 mt-2 mx-2 bg-item hover:bg-gray-700 text-gray-50 border-bordercolor border">
             <div className="p-4">
                 <div className="flex justify-between items-center mb-4">
                     <div>

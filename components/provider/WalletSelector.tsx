@@ -72,7 +72,7 @@ export function WalletSelector(walletSortingOptions: WalletSortingOptions) {
     }, [account?.address, toast]);
 
     const routerHandler = () => {
-        router.push('/pools');
+        router.push('/kana');
     }
 
     return connected ? (
@@ -84,7 +84,7 @@ export function WalletSelector(walletSortingOptions: WalletSortingOptions) {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuItem onSelect={routerHandler} className="gap-2">
-                    <ArrowRightFromLine className="h-4 w-4" /> Pools
+                    <ArrowRightFromLine className="h-4 w-4" /> Kanabot
                 </DropdownMenuItem>
                 <DropdownMenuItem onSelect={copyAddress} className="gap-2">
                     <Copy className="h-4 w-4" /> Copy address

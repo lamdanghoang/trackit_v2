@@ -38,7 +38,7 @@ export default function Header() {
         setLoadingFullScreen(true);
         setTimeout(() => setLoadingFullScreen(false), 2000)
         setInput("");
-        router.push('/pools');
+        router.push('/kana');
     }
 
     return (
@@ -92,7 +92,7 @@ export default function Header() {
                                     <form className="relative" onSubmit={e => submitHandler(e)}>
                                         <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
                                         <Input onChange={e => changeHandler(e.target.value)}
-                                            id="search" placeholder="Type your prompt" className="pl-8"
+                                            id="search" placeholder="Search with TrackIt" className="pl-8"
                                             value={input}
                                         />
                                         <Input type="submit" value="Search" className='hidden' />
@@ -112,7 +112,7 @@ export default function Header() {
                 <div className="hidden md:flex items-center space-x-4">
                     <form className="relative" onSubmit={e => submitHandler(e)}>
                         <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                        <Input value={input} onChange={e => changeHandler(e.target.value)} id="search" placeholder="Type your prompt" className="pl-8 w-[300px]" />
+                        <Input value={input} onChange={e => changeHandler(e.target.value)} id="search" placeholder="Search with TrackIt" className="pl-8 w-[300px]" />
                         <Input type="submit" value="Search" className='hidden' />
                     </form>
 
