@@ -1,5 +1,5 @@
 "use client";
-import { Search } from 'lucide-react'
+import { Loader2, Search } from 'lucide-react'
 import BarChart from '../BarChart';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { useState } from 'react';
 import CustomChart from '../LineChart';
 import KanabotDashboard from '../KanaUI';
+import { Card, CardContent } from '../ui/Card';
 
 const chartData = [
     { name: 'ETH-USDC', TVL: 100000, Volume: 80000 },
@@ -54,6 +55,12 @@ const tokenList = [
 export default function Pools() {
     const [selectedToken, setSelectedToken] = useState('aptos');
     const [selectedPosition, setSelectedPosition] = useState('buy');
+    const [isLoading, setIsLoading] = useState(false);
+
+    const simulateHandler = () => {
+        setIsLoading(true);
+        setTimeout(() => setIsLoading(false), 3000)
+    }
 
     return (
         <main className="container mx-auto px-3 py-4">
@@ -73,7 +80,7 @@ export default function Pools() {
                                     <SelectValue placeholder="Select" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    {tokenList.map(token => <SelectItem value={token.name}>{token.symbol}</SelectItem>)}
+                                    {tokenList.map(token => <SelectItem key={token.name} value={token.name}>{token.symbol}</SelectItem>)}
                                 </SelectContent>
                             </Select>
                         </div>
@@ -116,17 +123,30 @@ export default function Pools() {
                     </div>
                 </div>
                 <div className="flex items-center justify-center bg-panel rounded-lg shadow">
-                    <Button className="w-1/2 h-1/3 bg-blue hover:bg-blue/80 text-md text-white font-bold text-wrap">
+                    <Button onClick={simulateHandler}
+                        className="w-1/2 h-1/3 bg-blue hover:bg-blue/80 text-md text-white font-bold text-wrap">
                         Simulate Position Performance
                     </Button>
                 </div>
             </div>
 
-            <div className="bg-panel rounded-lg shadow mb-8">
-                <h3 className="px-4 py-4 mb-5 flex items-center text-xl font-bold bg-panel text-blue-400 backdrop-blur-sm rounded-t-lg">
+            <div className="bg-panel pb-5 rounded-lg shadow mb-8">
+                <h3 className="px-4 py-4 flex items-center text-xl font-bold bg-panel text-blue-400 backdrop-blur-sm rounded-t-lg">
                     Kanabot
                 </h3>
-                <KanabotDashboard />
+                <div className="w-full mx-auto px-4 space-y-4">
+                    {isLoading && (
+                        <Card className="bg-gradient-to-r from-purple-600 to-indigo-600">
+                            <CardContent className="flex items-center justify-center p-6">
+                                <div className="flex items-center space-x-4">
+                                    <Loader2 className="h-6 w-6 animate-spin text-white" />
+                                    <span className="text-xl font-semibold text-white">Kanabot running</span>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    )}
+                    <KanabotDashboard />
+                </div>
             </div>
 
             <div className="bg-panel rounded-lg shadow mb-8">

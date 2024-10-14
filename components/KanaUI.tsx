@@ -4,7 +4,7 @@ import { ScrollArea } from "@/components/ui/ScrollArea"
 import { Input } from "@/components/ui/Input"
 import { Loader2 } from "lucide-react"
 
-type Transaction = {
+interface Transaction {
     id: string
     type: 'buy' | 'sell'
     amount: number
@@ -54,33 +54,25 @@ export default function KanabotDashboard() {
     }
 
     return (
-        <div className="w-full mx-auto p-4 space-y-4">
-            <Card className="bg-gradient-to-r from-purple-600 to-indigo-600">
-                <CardContent className="flex items-center justify-center p-6">
-                    <div className="flex items-center space-x-4">
-                        <Loader2 className="h-6 w-6 animate-spin text-white" />
-                        <span className="text-xl font-semibold text-white">Kanabot running</span>
-                    </div>
-                </CardContent>
-            </Card>
 
-            <Card className="bg-black text-green-400 font-mono">
-                <CardHeader>
-                    <CardTitle className="text-xl">Transaction History</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <ScrollArea className="h-[300px] w-full mb-4 p-4 bg-gray-900 rounded">
-                        {transactions.map(tx => (
-                            <div key={tx.id} className="mb-2">
-                                <span className="text-gray-500">[{formatTimestamp(tx.timestamp)}]</span>{' '}
-                                <span className={tx.type === 'buy' ? 'text-green-400' : 'text-red-400'}>
-                                    {tx.type.toUpperCase()} {tx.amount} {tx.currency}
-                                </span>{' '}
-                                <span className="text-blue-400">@ ${tx.price.toFixed(2)}</span>
-                            </div>
-                        ))}
-                    </ScrollArea>
-                    {/* <form onSubmit={handleInputSubmit} className="flex">
+
+        <Card className="bg-black text-green-400 font-mono">
+            <CardHeader>
+                <CardTitle className="text-xl">Transaction History</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <ScrollArea className="h-[300px] w-full mb-4 p-4 bg-gray-900 rounded">
+                    {transactions.map(tx => (
+                        <div key={tx.id} className="mb-2">
+                            <span className="text-gray-500">[{formatTimestamp(tx.timestamp)}]</span>{' '}
+                            <span className={tx.type === 'buy' ? 'text-green-400' : 'text-red-400'}>
+                                {tx.type.toUpperCase()} {tx.amount} {tx.currency}
+                            </span>{' '}
+                            <span className="text-blue-400">@ ${tx.price.toFixed(2)}</span>
+                        </div>
+                    ))}
+                </ScrollArea>
+                {/* <form onSubmit={handleInputSubmit} className="flex">
                         <span className="mr-2">$</span>
                         <Input
                             type="text"
@@ -90,8 +82,8 @@ export default function KanabotDashboard() {
                             placeholder="Enter 'amount currency' or 'clear'"
                         />
                     </form> */}
-                </CardContent>
-            </Card>
-        </div>
+            </CardContent>
+        </Card>
+
     )
 }
