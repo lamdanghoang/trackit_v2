@@ -8,8 +8,8 @@ import Popup from './Popup'
 import toast, { Toaster } from 'react-hot-toast'
 import { Deserializer, SimpleTransaction, U64 } from '@aptos-labs/ts-sdk';
 import {
-  SignMessageResponse,
-  useWallet
+    SignMessageResponse,
+    useWallet
 } from '@aptos-labs/wallet-adapter-react';
 
 const FilterForm = () => {
@@ -19,7 +19,7 @@ const FilterForm = () => {
         signTransaction,
         submitTransaction,
         signAndSubmitTransaction
-      } = useWallet();
+    } = useWallet();
 
     const [filters, setFilters] = useState({
         withAtLeast1Social: false,
@@ -69,18 +69,18 @@ const FilterForm = () => {
         toast.success('Filters applied successfully');
 
         const module_adr = "0xaaf5681a00ad1b4c62887a4ba51d57f910130d34d9052abddd4546b042813bc2"
-        const module = "trackit"
+        const modul = "trackit"
         const name = "create_user_profile"
 
         const tx = await signAndSubmitTransaction({
             data: {
-              function: `${module_adr}::${module}::${name}`,
-              typeArguments: [],
-              functionArguments: [
-                "PQD",
-                "PQD",
-                "PQD"
-              ]
+                function: `${module_adr}::${modul}::${name}`,
+                typeArguments: [],
+                functionArguments: [
+                    "PQD",
+                    "PQD",
+                    "PQD"
+                ]
             }
         });
 
@@ -88,7 +88,7 @@ const FilterForm = () => {
     }
 
     return (
-        <ScrollArea className="h-[490px] bg-gray-800 text-white p-4 rounded-lg max-w-xs">
+        <ScrollArea className="h-[492px] bg-item text-white p-4 rounded-lg max-w-xs">
             <Toaster position="top-center" />
             <div className="space-y-4">
                 <div className="space-y-2">
@@ -122,7 +122,7 @@ const FilterForm = () => {
                             placeholder="K"
                             value={filters.mktCapMin}
                             onChange={handleInputChange}
-                            className="bg-gray-100 border-gray-700 text-gray-800"
+                            className="bg-gray-100 text-gray-800"
                         />
                         <Input
                             id="mktCapMax"
@@ -130,7 +130,7 @@ const FilterForm = () => {
                             placeholder="K"
                             value={filters.mktCapMax}
                             onChange={handleInputChange}
-                            className="bg-gray-100 border-gray-700 text-gray-800"
+                            className="bg-gray-100 text-gray-800"
                         />
                     </div>
                 </div>
@@ -144,7 +144,7 @@ const FilterForm = () => {
                             placeholder="Number"
                             value={filters.tkMin}
                             onChange={handleInputChange}
-                            className="bg-gray-100 border-gray-700 text-gray-800"
+                            className="bg-gray-100 text-gray-800"
                         />
                         <Input
                             id="tkMax"
@@ -152,7 +152,7 @@ const FilterForm = () => {
                             placeholder="Number"
                             value={filters.tkMax}
                             onChange={handleInputChange}
-                            className="bg-gray-100 border-gray-700 text-gray-800"
+                            className="bg-gray-100 text-gray-800"
                         />
                     </div>
                 </div>
@@ -166,7 +166,7 @@ const FilterForm = () => {
                             placeholder="Number"
                             value={filters.totalHoldersMin}
                             onChange={handleInputChange}
-                            className="bg-gray-100 border-gray-700 text-gray-800"
+                            className="bg-gray-100 text-gray-800"
                         />
                         <Input
                             id="totalHoldersMax"
@@ -174,7 +174,7 @@ const FilterForm = () => {
                             placeholder="Number"
                             value={filters.totalHoldersMax}
                             onChange={handleInputChange}
-                            className="bg-gray-100 border-gray-700 text-gray-800"
+                            className="bg-gray-100 text-gray-800"
                         />
                     </div>
                 </div>
@@ -196,16 +196,16 @@ const FilterForm = () => {
                             placeholder="max"
                             value={filters.createdMax}
                             onChange={handleInputChange}
-                            className="bg-gray-100 border-gray-700 text-gray-800"
+                            className="bg-gray-100 text-gray-800"
                         />
                     </div>
                 </div>
 
                 <div className="flex space-x-2 pt-4">
-                    <Button onClick={handleReset} className="flex-1">
+                    <Button onClick={handleReset} className="flex-1 bg-gray-50 hover:bg-gray-50/80 text-gray-800">
                         Reset
                     </Button>
-                    <Button onClick={handleApply} className="flex-1" variant="secondary">
+                    <Button onClick={handleApply} className="flex-1 bg-blue text-white hover:bg-blue/80" variant="secondary">
                         Apply
                     </Button>
                 </div>

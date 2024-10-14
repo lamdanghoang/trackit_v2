@@ -137,7 +137,7 @@ const HomePage = () => {
         <main className="px-3 py-4">
             <div className="max-w-[2400px] mx-auto grid gap-4 grid-cols-8 lg:grid-cols-12">
                 <div className="col-span-2 lg:col-span-3 hidden lg:block">
-                    <Panel title="Token Sentiment" height="h-[450px]">
+                    <Panel title="Token Sentiment" height="h-[445px]">
                         {isLoading ? (
                             <div className="flex items-center justify-center h-full text-gray-50">Loading...</div>
                         ) : error ? (
@@ -149,16 +149,10 @@ const HomePage = () => {
                 </div>
                 <div className="col-span-8 lg:col-span-6 grid grid-cols-2 gap-4">
                     <div className="space-y-4">
-                        <Panel title="Analysis" height="h-[197px]">
-                            {isLoading ? (
-                                <div className="flex items-center justify-center h-full text-gray-50">Loading...</div>
-                            ) : error ? (
-                                <div className="text-red-500">{error}</div>
-                            ) : (
-                                <List list={renderList(newsData, News)} />
-                            )}
+                        <Panel title="Analysis" height="h-[190px]">
+                            <List list={dummy_news} />
                         </Panel>
-                        <Panel title="Token Indicator" height="h-[197px]">
+                        <Panel title="Token Indicator" height="h-[191px]">
                             {isLoading ? (
                                 <div className="flex items-center justify-center h-full text-gray-50">Loading...</div>
                             ) : error ? (
@@ -168,8 +162,8 @@ const HomePage = () => {
                             )}
                         </Panel>
                     </div>
-                    <div className="space-y-4">
-                        <Panel title="Proposal Effects" height="h-[197px]">
+                    <div className="space-y-4 ">
+                        <Panel title="Proposal Effects" height="h-[445px]">
                             {isLoading ? (
                                 <div className="flex items-center justify-center h-full text-gray-50">Loading...</div>
                             ) : error ? (
@@ -178,9 +172,9 @@ const HomePage = () => {
                                 <List list={renderList(governanceVoteData, Governance)} />
                             )}
                         </Panel>
-                        <Panel title="TrackItSearch" height="h-[197px]">
+                        {/* <Panel title="TrackItSearch" height="h-[197px]">
                             <TrackitSearch />
-                        </Panel>
+                        </Panel> */}
                     </div>
                 </div>
                 <div className="col-span-2 lg:col-span-3 hidden lg:block">

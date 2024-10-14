@@ -16,7 +16,7 @@ const Pool: React.FC<Props> = ({ info }) => {
     const isPositiveChange = info.change_24h > 0;
 
     return (
-        <div className="block rounded-lg transition-colors duration-300 mt-2 ml-1 mr-2 bg-gray-800 hover:bg-gray-700">
+        <div className="block rounded-lg transition-colors duration-300 mt-2 ml-1 mr-2 bg-item hover:bg-gray-700 border-bordercolor border">
             <div className="p-3 flex items-center justify-between">
                 <div className="flex items-center">
                     <div className="w-6 h-6 flex-shrink-0 mr-3"></div>
