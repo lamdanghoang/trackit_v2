@@ -1,8 +1,12 @@
 "use client";
-import { Search, ChevronDown } from 'lucide-react'
+import { Search } from 'lucide-react'
 import BarChart from '../BarChart';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/Select';
+import { useState } from 'react';
+import CustomChart from '../LineChart';
+import KanabotDashboard from '../KanaUI';
 
 const chartData = [
     { name: 'ETH-USDC', TVL: 100000, Volume: 80000 },
@@ -20,7 +24,37 @@ const poolsData = [
     { pool: 'MATIC-USDC', TVL: '$700,000', volume: '$250,000', APY: '7.20%' },
 ]
 
+const tokenList = [
+    {
+        symbol: "BTC",
+        name: "bitcoin",
+    },
+    {
+        symbol: "ETH",
+        name: "ethereum",
+    },
+    {
+        symbol: "SOL",
+        name: "solana",
+    },
+    {
+        symbol: "APT",
+        name: "aptos",
+    },
+    {
+        symbol: "SUI",
+        name: "sui",
+    },
+    {
+        symbol: "USDT",
+        name: "tether",
+    },
+]
+
 export default function Pools() {
+    const [selectedToken, setSelectedToken] = useState('aptos');
+    const [selectedPosition, setSelectedPosition] = useState('buy');
+
     return (
         <main className="container mx-auto px-3 py-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
@@ -29,51 +63,60 @@ export default function Pools() {
                         Trading Request
                     </h3>
                     {/* <div className="px-6 text-3xl font-bold text-gray-50">$0.56</div> */}
-                    <div className="mt-2 px-6 py-2 flex justify-between items-center ">
+                    <div className="mt-2 px-12 py-2 flex justify-between items-center ">
                         <div>
-                            <div className="text-sm text-gray-200 font-bold">Token</div>
-                            {/* <div className="text-sm text-gray-400">1.68%</div> */}
+                            <div className="text-lg text-gray-200 font-bold">Token</div>
                         </div>
-                        <Input className="w-1/4 px-2 py-1 rounded " /> Lists of token
+                        <div className='w-1/3'>
+                            <Select value={selectedToken} onValueChange={setSelectedToken}>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {tokenList.map(token => <SelectItem value={token.name}>{token.symbol}</SelectItem>)}
+                                </SelectContent>
+                            </Select>
+                        </div>
                     </div>
-                    <div className="px-6 py-2 flex justify-between items-center ">
+                    <div className="px-12 py-2 flex justify-between items-center ">
                         <div>
-                            <div className="text-sm text-gray-200 font-bold">Position</div>
-                            {/* <div className="text-sm text-gray-400">20.45%</div> */}
+                            <div className="text-lg text-gray-200 font-bold">Position</div>
                         </div>
-                        <Input className="w-1/4 px-2 py-1" /> Buy/Sell
+                        <div className='w-1/3'>
+                            <Select value={selectedPosition} onValueChange={setSelectedPosition}>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="buy">BUY</SelectItem>
+                                    <SelectItem value="sell">SELL</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
                     </div>
-                    {/* <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white">
-                        Simulate Position Performance
-                    </Button> */}
                 </div>
                 <div className="bg-panel rounded-lg shadow">
                     <h3 className="px-4 py-2 rounded-t-lg flex items-center text-lg font-semibold text-blue-400 backdrop-blur-sm">
                         Deposit Amount
                     </h3>
-                    <div className='px-5 h-9 '>
+                    <div className='px-6 h-9 '>
                         <Input placeholder='Type your amount' className="px-2 py-1" />
                     </div>
                     <div className="mt-2 px-6 py-2 flex justify-between items-center ">
                         <div>
-                            <div className="text-sm text-gray-200 font-bold">Expect Profit</div>
-                            <div className="text-sm text-gray-400">(%)</div>
+                            <div className="text-md text-gray-200 font-bold">Expect Profit (%)</div>
                         </div>
                         <Input className="w-1/4 px-2 py-1 rounded " />
                     </div>
                     <div className="px-6 py-2 flex justify-between items-center ">
                         <div>
-                            <div className="text-sm text-gray-200 font-bold">Expect Loss</div>
-                            <div className="text-sm text-gray-400">(%)</div>
+                            <div className="text-md text-gray-200 font-bold">Expect Loss (%)</div>
                         </div>
                         <Input className="w-1/4 px-2 py-1" />
                     </div>
-                    {/* <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white">
-                        Simulate Position Performance
-                    </Button> */}
                 </div>
-                <div className="bg-panel rounded-lg shadow">
-                    <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white">
+                <div className="flex items-center justify-center bg-panel rounded-lg shadow">
+                    <Button className="w-1/2 h-1/3 bg-blue hover:bg-blue/80 text-md text-white font-bold text-wrap">
                         Simulate Position Performance
                     </Button>
                 </div>
@@ -81,22 +124,17 @@ export default function Pools() {
 
             <div className="bg-panel rounded-lg shadow mb-8">
                 <h3 className="px-4 py-4 mb-5 flex items-center text-xl font-bold bg-panel text-blue-400 backdrop-blur-sm rounded-t-lg">
-                    Chart
+                    Kanabot
                 </h3>
-                {/* <ResponsiveContainer width="100%" height={300} >
-                    <BarChart data={chartData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Bar dataKey="TVL" fill="#8884d8" name="TVL" activeBar={<Rectangle fill="pink" stroke="blue" />} />
-                        <Bar dataKey="Volume" fill="#82ca9d" name="24h Volume" activeBar={<Rectangle fill="gold" stroke="purple" />} />
-                    </BarChart>
-                </ResponsiveContainer> */}
-                <BarChart />
+                <KanabotDashboard />
             </div>
 
+            <div className="bg-panel rounded-lg shadow mb-8">
+                <h3 className="px-4 py-4 mb-5 flex items-center text-xl font-bold bg-panel text-blue-400 backdrop-blur-sm rounded-t-lg">
+                    Chart
+                </h3>
+                <CustomChart />
+            </div>
 
             <div className="bg-panel rounded-lg shadow">
                 <div className='flex justify-between items-center'>

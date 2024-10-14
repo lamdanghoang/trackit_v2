@@ -20,6 +20,8 @@ import { WalletSelector } from "@/components/provider/WalletSelector"
 import GlobalContext from '@/context/store'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
+import Image from 'next/image'
+import logo from "@/assets/logo.png"
 
 export default function Header() {
     const { setLoadingFullScreen } = useContext(GlobalContext);
@@ -46,18 +48,7 @@ export default function Header() {
             <div className="container mx-auto px-5 py-3 flex items-center justify-between">
                 {/* Logo */}
                 <Link href="/" className="flex items-center text-white">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="w-6 h-6 mr-2"
-                    >
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                    </svg>
+                    <Image src={logo} alt='trackit' height={40} />
                     <span className="font-bold text-xl">TrackIt</span>
                 </Link>
 
