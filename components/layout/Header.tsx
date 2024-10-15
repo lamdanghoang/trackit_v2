@@ -44,7 +44,7 @@ export default function Header() {
     }
 
     return (
-        <header className="border-b">
+        <header className="mb-1">
             <div className="container mx-auto px-5 py-3 flex items-center justify-between">
                 {/* Logo */}
                 <Link href="/" className="flex items-center text-white">
@@ -66,14 +66,14 @@ export default function Header() {
                                     <label htmlFor="mobile-chain" className="text-sm font-medium">
                                         Select Chain
                                     </label>
-                                    <Select value={selectedChain} onValueChange={setSelectedChain}>
+                                    {/* <Select value={selectedChain} onValueChange={setSelectedChain}>
                                         <SelectTrigger id="mobile-chain">
                                             <SelectValue placeholder="Select chain" />
                                         </SelectTrigger>
                                         <SelectContent>
                                             <SelectItem value="APTOS">APTOS</SelectItem>
                                         </SelectContent>
-                                    </Select>
+                                    </Select> */}
                                 </div>
                                 <div className="flex flex-col gap-2">
                                     <label htmlFor="mobile-search" className="text-sm font-medium">
@@ -106,7 +106,7 @@ export default function Header() {
                         <Input type="submit" value="Search" className='hidden' />
                     </form>
 
-                    <Select value={selectedChain} onValueChange={setSelectedChain}>
+                    {/* <Select value={selectedChain} onValueChange={setSelectedChain}>
                         <SelectTrigger className="w-[120px]">
                             <SelectValue placeholder="Select chain" />
                         </SelectTrigger>
@@ -114,7 +114,7 @@ export default function Header() {
                             <SelectItem value="SUI">SUI</SelectItem>
                             <SelectItem value="APTOS">APTOS</SelectItem>
                         </SelectContent>
-                    </Select>
+                    </Select> */}
 
                     {/* <Button onClick={clickHandler}>
                         {!isClicked && (<><Wallet className="mr-2 h-4 w-4" /> Login </>)}

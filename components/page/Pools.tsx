@@ -92,7 +92,7 @@ export default function Pools() {
         <main className="container mx-auto px-3 py-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                 <div className="bg-panel rounded-lg shadow">
-                    <h3 className="px-4 py-2 rounded-t-lg flex items-center text-lg font-semibold text-blue-400 backdrop-blur-sm">
+                    <h3 className="px-4 py-2 rounded-t-lg flex items-center text-lg font-semibold text-lido backdrop-blur-sm">
                         Trading Request
                     </h3>
                     {/* <div className="px-6 text-3xl font-bold text-gray-50">$0.56</div> */}
@@ -129,7 +129,7 @@ export default function Pools() {
                     </div>
                 </div>
                 <div className="bg-panel rounded-lg shadow">
-                    <h3 className="px-4 py-2 rounded-t-lg flex items-center text-lg font-semibold text-blue-400 backdrop-blur-sm">
+                    <h3 className="px-4 py-2 rounded-t-lg flex items-center text-lg font-semibold text-lido backdrop-blur-sm">
                         Deposit Amount
                     </h3>
                     <div className='px-6 h-9 '>
@@ -150,14 +150,14 @@ export default function Pools() {
                 </div>
                 <div className="flex items-center justify-center bg-panel rounded-lg shadow">
                     <Button onClick={simulateHandler}
-                        className="w-1/2 h-1/3 bg-blue hover:bg-blue/80 text-md text-white font-bold text-wrap">
+                        className="w-1/2 h-1/3 bg-lido hover:bg-lido/80 text-md text-white font-bold text-wrap">
                         Simulate Position Performance
                     </Button>
                 </div>
             </div>
 
             <div className="bg-panel pb-5 rounded-lg shadow mb-8">
-                <h3 className="px-4 py-4 flex items-center text-xl font-bold bg-panel text-blue-400 backdrop-blur-sm rounded-t-lg">
+                <h3 className="px-4 py-4 flex items-center text-xl font-bold bg-panel text-lido backdrop-blur-sm rounded-t-lg">
                     Kanabot
                 </h3>
                 <div className="w-full mx-auto px-4 space-y-4">
@@ -176,7 +176,7 @@ export default function Pools() {
             </div>
 
             <div className="bg-panel rounded-lg shadow mb-8">
-                <h3 className="px-4 py-4 mb-5 flex items-center text-xl font-bold bg-panel text-blue-400 backdrop-blur-sm rounded-t-lg">
+                <h3 className="px-4 py-4 mb-5 flex items-center text-xl font-bold bg-panel text-lido backdrop-blur-sm rounded-t-lg">
                     Chart
                 </h3>
                 <CustomChart />
@@ -184,7 +184,7 @@ export default function Pools() {
 
             <div className="bg-panel rounded-lg shadow">
                 <div className='flex justify-between items-center'>
-                    <h3 className="px-6 py-2 rounded-t-lg flex items-center text-xl font-bold bg-panel text-blue-400 backdrop-blur-sm">
+                    <h3 className="px-6 py-2 rounded-t-lg flex items-center text-xl font-bold bg-panel text-lido backdrop-blur-sm">
                         History
                     </h3>
                     <div className="px-6 py-2 flex justify-between items-center">

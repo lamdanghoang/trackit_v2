@@ -5,13 +5,13 @@ export default function Footer() {
     const currentYear = new Date().getFullYear()
 
     return (
-        <footer className="border-t py-4 text-white">
+        <footer className="border-t border-[#39383d] py-4 text-white">
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row justify-between items-center">
                     <div className="flex items-center mb-2 md:mb-0">
                         <span className="font-bold text-xl">TrackIt</span>
                         <Copyright className="h-4 w-4 mx-2" />
-                        <span>{currentYear} Your Company Name. All rights reserved.</span>
+                        <span>{currentYear} All rights reserved.</span>
                     </div>
                     <nav>
                         <ul className="flex space-x-4">
