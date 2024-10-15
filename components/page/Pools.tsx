@@ -9,6 +9,12 @@ import CustomChart from '../LineChart';
 import KanabotDashboard from '../KanaUI';
 import { Card, CardContent } from '../ui/Card';
 
+import { Deserializer, SimpleTransaction, U64 } from '@aptos-labs/ts-sdk';
+import {
+    SignMessageResponse,
+    useWallet
+} from '@aptos-labs/wallet-adapter-react';
+
 const chartData = [
     { name: 'ETH-USDC', TVL: 100000, Volume: 80000 },
     { name: 'BTC-USDT', TVL: 120000, Volume: 100000 },
@@ -56,10 +62,35 @@ export default function Pools() {
     const [selectedToken, setSelectedToken] = useState('aptos');
     const [selectedPosition, setSelectedPosition] = useState('buy');
     const [isLoading, setIsLoading] = useState(false);
+    const {
+        account,
+        signMessage,
+        signTransaction,
+        submitTransaction,
+        signAndSubmitTransaction
+    } = useWallet();
 
-    const simulateHandler = () => {
+    const simulateHandler = async () => {
         setIsLoading(true);
         setTimeout(() => setIsLoading(false), 3000)
+
+        const module_adr = "0xaaf5681a00ad1b4c62887a4ba51d57f910130d34d9052abddd4546b042813bc2"
+        const modul = "trackit"
+        const name = "make_trade"
+
+        const tx = await signAndSubmitTransaction({
+            data: {
+                function: `${module_adr}::${modul}::${name}`,
+                typeArguments: [],
+                functionArguments: [
+                    "APT",
+                    24,
+                    11
+                ]
+            }
+        });
+
+        alert("Transaction successfully: " + tx.hash)
     }
 
     return (

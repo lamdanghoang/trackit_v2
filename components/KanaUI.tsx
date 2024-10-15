@@ -4,6 +4,12 @@ import { ScrollArea } from "@/components/ui/ScrollArea"
 import { Input } from "@/components/ui/Input"
 import { Loader2 } from "lucide-react"
 
+import { Deserializer, SimpleTransaction, U64 } from '@aptos-labs/ts-sdk';
+import {
+    SignMessageResponse,
+    useWallet
+} from '@aptos-labs/wallet-adapter-react';
+
 interface Transaction {
     id: string
     type: 'buy' | 'sell'
@@ -20,9 +26,9 @@ export default function KanabotDashboard() {
     useEffect(() => {
         // Simulating fetching transaction history
         const mockTransactions: Transaction[] = [
-            { id: '1', type: 'buy', amount: 0.5, currency: 'ETH', price: 2000, timestamp: Date.now() - 3600000 },
-            { id: '2', type: 'sell', amount: 100, currency: 'USDT', price: 1, timestamp: Date.now() - 7200000 },
-            { id: '3', type: 'buy', amount: 0.1, currency: 'BTC', price: 60000, timestamp: Date.now() - 10800000 },
+            { id: '1', type: 'buy', amount: 0.5, currency: 'APT', price: 2000, timestamp: Date.now() - 3600000 },
+            { id: '2', type: 'sell', amount: 100, currency: 'CETUS', price: 1, timestamp: Date.now() - 7200000 },
+            { id: '3', type: 'buy', amount: 0.1, currency: 'USDT', price: 60000, timestamp: Date.now() - 10800000 },
         ]
         setTransactions(mockTransactions)
     }, [])
