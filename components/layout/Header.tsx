@@ -71,7 +71,6 @@ export default function Header() {
                                             <SelectValue placeholder="Select chain" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="SUI">SUI</SelectItem>
                                             <SelectItem value="APTOS">APTOS</SelectItem>
                                         </SelectContent>
                                     </Select>

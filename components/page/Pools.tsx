@@ -49,10 +49,6 @@ const tokenList = [
         name: "aptos",
     },
     {
-        symbol: "SUI",
-        name: "sui",
-    },
-    {
         symbol: "USDT",
         name: "tether",
     },
