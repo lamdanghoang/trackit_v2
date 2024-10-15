@@ -78,7 +78,7 @@ export function WalletSelector(walletSortingOptions: WalletSortingOptions) {
     return connected ? (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button className="bg-lido hover:bg-lido/80">
+                <Button className="bg-lido hover:bg-lido/80 font-bold">
                     {account?.ansName || truncateAddress(account?.address) || "Unknown"}
                 </Button>
             </DropdownMenuTrigger>
@@ -109,7 +109,7 @@ export function WalletSelector(walletSortingOptions: WalletSortingOptions) {
     ) : (
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
-                <Button className="bg-lido hover:bg-lido/80">Connect a Wallet</Button>
+                <Button className="bg-lido hover:bg-lido/80 font-bold">Connect a Wallet</Button>
             </DialogTrigger>
             <ConnectWalletDialog close={closeDialog} {...walletSortingOptions} />
         </Dialog>

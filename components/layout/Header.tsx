@@ -49,7 +49,7 @@ export default function Header() {
                 {/* Logo */}
                 <Link href="/" className="flex items-center text-white">
                     <Image src={logo} alt='trackit' height={40} />
-                    <span className="font-bold text-xl">TrackIt</span>
+                    <span className="font-bold text-2xl leading-10">TrackIt</span>
                 </Link>
 
                 {/* Mobile menu */}

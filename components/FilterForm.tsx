@@ -205,7 +205,7 @@ const FilterForm = () => {
                     <Button onClick={handleReset} className="flex-1 bg-gray-50 hover:bg-gray-50/80 text-gray-800">
                         Reset
                     </Button>
-                    <Button onClick={handleApply} className="flex-1 bg-blue text-white hover:bg-blue/80" variant="secondary">
+                    <Button onClick={handleApply} className="flex-1 bg-blue text-white hover:bg-blue/80 font-bold" variant="secondary">
                         Apply
                     </Button>
                 </div>
