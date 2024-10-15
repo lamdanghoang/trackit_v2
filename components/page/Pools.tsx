@@ -76,7 +76,7 @@ export default function Pools() {
 
         const module_adr = "0xaaf5681a00ad1b4c62887a4ba51d57f910130d34d9052abddd4546b042813bc2"
         const modul = "trackit"
-        const name = "make_trade"
+        const name = "make_post"
 
         const tx = await signAndSubmitTransaction({
             data: {
@@ -84,8 +84,7 @@ export default function Pools() {
                 typeArguments: [],
                 functionArguments: [
                     "APT",
-                    24,
-                    11
+                    "buy"
                 ]
             }
         });
